@@ -14,7 +14,7 @@ section {
 
 h1 {
   font-size: 3rem; /* Adjust size as needed */
-  font-family: "Patrick Hand", cursive;
+  font-family: "Noto Sans", sans-serif;
 }
 
 /* Typography */
@@ -24,6 +24,13 @@ h2 {
 }
 
 /* Components and Reusable Elements */
+
+#about {
+  background-color: rgba(240, 248, 255, 0.5); /* AliceBlue with 50% opacity */
+  border-radius: 5px; /* Optional: adds rounded corners */
+  padding: 20px; /* Optional: adds some padding inside the background */
+}
+
 #myBtn {
   position: fixed; /* Fixed/sticky position */
   bottom: 20px; /* Place the button 20px from the bottom */
@@ -49,9 +56,15 @@ h2 {
   background-position: left center;
 }
 
+.forkIcon {
+  font-size: 50px;
+}
+
 .selfie {
   border: 3px solid black;
   padding: 0px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border-radius: 10px;
 }
 
 .headerImage {
@@ -75,7 +88,7 @@ h2 {
   background-color: #35654d; /* Adjust opacity and color as needed */
   color: #ffffff;
   display: inline-block;
-  border-radius: 50px; /* Rounded corners */
+  border-radius: 30px; /* Rounded corners */
   border: 3px solid #b17b05; /* Border style */
 }
 
@@ -87,16 +100,17 @@ h2 {
 .calendar-container {
   max-width: 95%; /* Adjusted to allow stretching closer to the edges */
   margin: auto; /* Keeps it centered */
-  /* border: 2px solid #000000; Adds a solid border */
   border-radius: 5px; /* Optional: rounds the corners */
   padding: 20px; /* Adds some spacing inside the container */
-  /* box-shadow: 0 4px 8px rgba(0,0,0,.05); Optional: adds a subtle shadow for depth */
   text-align: center;
 }
 
 .calendar-container .row {
   margin: 0;
-  /* border: 3mm ridge rgba(220, 166, 50, 0.6); */
+  border-radius: 5px; /* Optional: adds rounded corners */
+  padding: 20px; /* Optional: adds some padding inside the background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border: 3px solid #35654d;
 }
 
 .calendar-container .calendar-title {
@@ -138,7 +152,7 @@ h2 {
   margin-bottom: 15px; /* Adjust the value as needed */
 }
 
-/* stuff for the answer.html pae */
+/* stuff for the answer.html pae -------------------------------------*/
 .btn-square {
   width: 300px; /* Adjust size as needed */
   height: 300px; /* Adjust size as needed */
