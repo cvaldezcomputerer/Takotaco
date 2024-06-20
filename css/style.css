@@ -185,3 +185,17 @@ h2 {
 #yellowButton {
   background-color: rgb(38, 137, 12);
 }
+.middle-section {
+  min-height: 100vh; /* Allows the container to expand beyond the viewport height if needed */
+  overflow-y: auto; /* Adds scroll to the container if content overflows */
+}
+
+/* Media query for devices with a max-width of 600px */
+@media (max-width: 600px) {
+  .btn-square {
+    padding: 8px 12px; /* Adjust padding to make buttons smaller */
+    margin: 5px; /* Reduce margin to save space */
+  }
+}
+
+/* Ensure the content is scrollable if it exceeds the viewport height */
