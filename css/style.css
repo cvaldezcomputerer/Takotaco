@@ -127,7 +127,6 @@ h2 {
   padding: 0; /* Adjust padding as needed, but keep it uniform */
   border-bottom: 1px solid #ddd; /* Light border at the bottom */
   border-radius: 5px;
-  text-align: left;
 }
 
 .calendar-container .card-text {
