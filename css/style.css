@@ -76,7 +76,7 @@ h2 {
   color: #ffffff;
   display: inline-block;
   border-radius: 50px; /* Rounded corners */
-  border: 5px groove #b17b05; /* Border style */
+  border: 3px solid #b17b05; /* Border style */
 }
 
 /* Update footer background and text color */
@@ -136,4 +136,38 @@ h2 {
 /* so that dont touch the card tittle text */
 .card-text li {
   margin-bottom: 15px; /* Adjust the value as needed */
+}
+
+/* stuff for the answer.html pae */
+.btn-square {
+  width: 300px; /* Adjust size as needed */
+  height: 300px; /* Adjust size as needed */
+  font-size: 20px; /* Adjust font size as needed */
+  padding: 0;
+  border-radius: 50%; /* Optional: removes the rounded corners for a more square look */
+}
+#resetButton {
+  display: none; /* Initially hidden */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 50px; /* Adjust font size as needed */
+  position: fixed; /* Use fixed or absolute positioning */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Adjust based on the button's size to center it */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+#redButton {
+  background-color: rgb(203, 0, 44);
+}
+#blueButton {
+  background-color: rgb(19, 104, 206);
+}
+#greenButton {
+  background-color: rgb(216, 158, 0);
+}
+#yellowButton {
+  background-color: rgb(38, 137, 12);
 }

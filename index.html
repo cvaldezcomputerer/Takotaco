@@ -28,7 +28,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
   </head>
 
   <body>
@@ -37,10 +40,8 @@
         <!-- above container is entire wite backdrop -->
         <div class="py-5 headerImage text-white text-center">
           <div class="header-text p-3">
-            <h1>Takko 🌮</h1>
-            <p class="text-warning">
-              Unoffical 田子町 English website (Created by クリス 先生)
-            </p>
+            <h1>Takko Taco</h1>
+            <p class="text-warning">The unoffical 田子町 English website</p>
           </div>
         </div>
 
@@ -53,12 +54,14 @@
                 <h2 class="text-center"><strong>ABOUT</strong></h2>
 
                 <div>
-                  <img
-                    src="./images/hi.png"
-                    class="selfie img-fluid rounded-circle"
-                    alt="hi"
-                    loading="lazy"
-                  />
+                  <a href="answer.html">
+                    <img
+                      src="./images/hi.png"
+                      class="selfie img-fluid rounded-circle"
+                      alt="hi"
+                      loading="lazy"
+                    />
+                  </a>
                 </div>
                 <h4 class="mt-4 text-center">LINKS</h4>
                 <ul class="nav nav-pills flex-column text-center">
@@ -194,9 +197,7 @@
 
         <!-- Footer -->
         <div class="footer mt-5 py-3 text-white text-center">
-          <p style="background-color: rgba(0, 0, 0, 0.05)">
-            takko english takko takko
-          </p>
+          <p class="text-center text-body-secondary">© 2024 Cristian Valdez</p>
         </div>
 
         <!-- Back to Top Button -->
