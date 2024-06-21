@@ -58,13 +58,13 @@ h2 {
 
 .selfie {
   border: 3px solid black;
-  padding: 0px;
+  padding-top: none;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   border-radius: 10px;
 }
 
 .headerImage {
-  background-image: url("../images/yo.jpeg");
+  background-image: url("../images/yo2.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -72,8 +72,8 @@ h2 {
 .background-wrapper {
   background-color: #f8eacc;
   /*background-image: url("./images/kitty.jpeg"); /* Specify your image URL */
-  background-size: 50px; /* Set the size of the background image */
-  background-repeat: repeat; /* Repeat the image */
+  /* background-size: 50px; /* Set the size of the background image */
+  /*background-repeat: repeat; Repeat the image */
 }
 .container {
   background-color: #ffffff; /* Set a background color for the content area */
