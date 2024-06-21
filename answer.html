@@ -14,15 +14,10 @@
   <style>
     #resetButton {
       display: none; /* Initially hidden */
-      padding: 10px 20px; /* Adjust padding as needed */
-      font-size: 50px; /* Adjust font size as needed */
-      position: fixed; /* Use fixed or absolute positioning */
-      top: 50%; /* Center vertically */
-      left: 50%; /* Center horizontally */
-      transform: translate(
-        -50%,
-        -50%
-      ); /* Adjust based on the button's size to center it */
+      width: 15vw; /* Use viewport width for responsive sizing */
+      height: 15vw; /* Maintain square aspect ratio */
+      font-size: 1.5em; /* Scale text size based on parent element's font size */
+      padding: 1em; /* Use em to make padding relative to font size */
       cursor: pointer; /* Change cursor to pointer on hover */
     }
     .butt {
@@ -48,31 +43,32 @@
   </style>
 
   <body>
-    <button id="resetButton" style="display: none">リセットボタン</button>
+    <button id="resetButton">リセットボタン</button>
     <div
       class="container d-flex justify-content-center align-items-center middle-section"
       style="height: 100vh"
     >
       <div class="row">
         <div class="col-12 text-center">
+          <button id="resetButton">リセットボタン</button>
           <button
             onclick="changeColor('rgb(203, 0, 44)')"
-            class="btn btn-lg m-2 butt"
+            class="btn m-2 butt"
             id="redButton"
           ></button>
           <button
             onclick="changeColor('rgb(19, 104, 206)')"
-            class="btn btn-lg m-2 butt"
+            class="btn m-2 butt"
             id="blueButton"
           ></button>
           <button
             onclick="changeColor('rgb(216, 158, 0)')"
-            class="btn btn-lg m-2 butt"
+            class="btn m-2 butt"
             id="greenButton"
           ></button>
           <button
             onclick="changeColor('rgb(216, 158, 0)')"
-            class="btn btn-lg m-2 butt"
+            class="btn m-2 butt"
             id="yellowButton"
           ></button>
         </div>
