@@ -25,9 +25,9 @@ h2 {
 
 /* Components and Reusable Elements */
 
-#about {
+#aboutText {
   background-color: rgba(240, 248, 255, 0.5); /* AliceBlue with 50% opacity */
-  border-radius: 5px; /* Optional: adds rounded corners */
+  border-radius: 5%; /* Optional: adds rounded corners */
   padding: 20px; /* Optional: adds some padding inside the background */
 }
 
@@ -54,10 +54,6 @@ h2 {
   background-size: 15px 15px; /* Adjust as needed */
   padding-left: 25px; /* Adjust based on image size */
   background-position: left center;
-}
-
-.forkIcon {
-  font-size: 50px;
 }
 
 .selfie {
