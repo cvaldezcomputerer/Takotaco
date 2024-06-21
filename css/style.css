@@ -109,14 +109,16 @@ h2 {
   border: 3px solid #35654d;
 }
 
-.calendar-container .calendar-title {
+.section-title {
+  display: block; /* Ensure it's treated as a block-level element */
+  max-width: 35%; /* Adjust this value as needed */
+  margin: 0 auto;
   font-family: "Patrick Hand", cursive;
   color: rgb(255, 255, 255);
   font-size: 50px;
   background-color: #35654d;
   border-radius: 15px; /* Rounded corners */
   border: 3px solid #b17b05; /* Border style */
-  display: inline-block;
   padding: 10px;
   margin-bottom: 30px;
 }
