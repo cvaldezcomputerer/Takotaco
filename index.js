@@ -1,39 +1,38 @@
 var goingTop = false;
-var btnImg = document.getElementById("myBtnImg");
+var btnImg = $("#myBtnImg"); // Use jQuery for selecting elements
 
-//note, in future add animiaton flying to the top
-window.onscroll = function () {
+// Note, in future add animation flying to the top
+$(window).scroll(function () {
   if (
-    (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) &&
+    ($(document).scrollTop() > 0 || $("html").scrollTop() > 0) &&
     goingTop == false
   ) {
-    btnImg.src = "./images/catScroll.png"; // Change the image when scrolling
+    btnImg.attr("src", "./images/catScroll.png"); // Change the image when scrolling
   } else if (goingTop) {
-    //specifc case that we're going to the top
-    // Set a delay of 3 seconds (3000 milliseconds) before changing the image back
+    // Specific case that we're going to the top
+    // Set a delay of 800 milliseconds before changing the image back
     setTimeout(function () {
-      btnImg.src = "./images/catTop.png";
+      btnImg.attr("src", "./images/catTop.png");
       goingTop = false;
     }, 800);
   } else {
-    //if we're at the top
-    btnImg.src = "./images/catTop.png";
+    // If we're at the top
+    btnImg.attr("src", "./images/catTop.png");
   }
-};
+});
 
 function topFunction() {
+  // Immediately change the image when the button is clicked
+  var btnImg = $("#myBtnImg");
+  btnImg.attr("src", "./images/catClicked.png");
+
   // Check if the page is already at the top
-  if (
-    document.body.scrollTop === 0 &&
-    document.documentElement.scrollTop === 0
-  ) {
-    // If it is, return without doing anything
-    return;
+  if ($(document).scrollTop() === 0 && $("html").scrollTop() === 0) {
+    return; // Exit if already at the top
   }
 
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  btnImg = document.getElementById("myBtnImg");
-  btnImg.src = "./images/catClicked.png"; // Change the image when the button is clicked
+  // Smooth scroll to the top
+  $("html, body").animate({ scrollTop: 0 }, 80);
+
   goingTop = true;
 }
