@@ -1,38 +1,122 @@
-var goingTop = false;
-var btnImg = $("#myBtnImg"); // Use jQuery for selecting elements
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var currentLetter = "A";
+var currentIndex = 0;
+var stopwatchInterval;
+var elapsedTime = 0;
 
-// Note, in future add animation flying to the top
-$(window).scroll(function () {
-  if (
-    ($(document).scrollTop() > 0 || $("html").scrollTop() > 0) &&
-    goingTop == false
-  ) {
-    btnImg.attr("src", "./images/catScroll.png"); // Change the image when scrolling
-  } else if (goingTop) {
-    // Specific case that we're going to the top
-    // Set a delay of 800 milliseconds before changing the image back
-    setTimeout(function () {
-      btnImg.attr("src", "./images/catTop.png");
-      goingTop = false;
-    }, 800);
-  } else {
-    // If we're at the top
-    btnImg.attr("src", "./images/catTop.png");
-  }
+$(document).ready(function () {
+  $("#playButton").on("click", startGame);
 });
 
-function topFunction() {
-  // Immediately change the image when the button is clicked
-  var btnImg = $("#myBtnImg");
-  btnImg.attr("src", "./images/catClicked.png");
-
-  // Check if the page is already at the top
-  if ($(document).scrollTop() === 0 && $("html").scrollTop() === 0) {
-    return; // Exit if already at the top
-  }
-
-  // Smooth scroll to the top
-  $("html, body").animate({ scrollTop: 0 }, 80);
-
-  goingTop = true;
+function startGame() {
+  //resets vars incase the game is played again
+  currentLetter = "A";
+  currentIndex = 0;
+  stopwatchInterval;
+  elapsedTime = 0;
+  $("#endGameMessege").addClass("hidden");
+  $("#AlphabetScreen").empty();
+  $("#gameControls").addClass("hidden");
+  $("#AlphabetScreen").removeClass("hidden");
+  $("#chooseNextLetter").removeClass("hidden");
+  startStopwatch();
+  playMusic();
+  runGameRound();
 }
+
+function playMusic() {
+  // var audio = new Audio("./audio/abc.mp3");
+  // audio.play();
+}
+function gameOver() {
+  clearInterval(stopwatchInterval);
+  $("#stopwatch").text("Game オヴァァァァ");
+  $("#endGameMessege").removeClass("hidden");
+  $("#endGameMessege").text("Your time was " + elapsedTime + "s");
+  $("#chooseNextLetter").addClass("hidden");
+  $("#gameControls").removeClass("hidden");
+  $("#AlphabetScreen").addClass("hidden");
+}
+function runGameRound() {
+  var randomCorrectChoice = getRandomNonRepeatingInts();
+  //first randomize where the correct answwer will be
+  var firstRandomLetter = getRandomCapitalLetter();
+  //pick the random wrong asnwers based on the correct answer
+  var secondRandomLetter = getAnotherRandomCapitalLetter(firstRandomLetter);
+
+  //set the choices and add the click event handlers
+  $("#letterChoice" + randomCorrectChoice[0])
+    .text(currentLetter)
+    .off("click")
+    .on("click", handleCorrectLetter);
+  $("#letterChoice" + randomCorrectChoice[1])
+    .text(firstRandomLetter)
+    .off("click")
+    .on("click", handleIncorrectLetter);
+  $("#letterChoice" + randomCorrectChoice[2])
+    .text(secondRandomLetter)
+    .off("click")
+    .on("click", handleIncorrectLetter);
+}
+
+function startStopwatch() {
+  elapsedTime = 0;
+  $("#stopwatch").text("Time: 0s"); // Initialize the stopwatch display
+
+  stopwatchInterval = setInterval(function () {
+    elapsedTime++;
+    $("#stopwatch").text("Time: " + elapsedTime + "s");
+  }, 1000); // Update every second
+}
+
+function getRandomCapitalLetter() {
+  var letter = letters[Math.floor(Math.random() * letters.length)];
+  //make sure the letter is not the same as the current letter
+  while (letter === currentLetter) {
+    letter = letters[Math.floor(Math.random() * letters.length)];
+  }
+  return letter;
+}
+
+function getAnotherRandomCapitalLetter(letter) {
+  var newLetter = letters[Math.floor(Math.random() * letters.length)];
+  //make sure the letter is not the same as the current letter and not same as other random letter
+  while (newLetter === letter || newLetter === currentLetter) {
+    newLetter = letters[Math.floor(Math.random() * letters.length)];
+  }
+  return newLetter;
+}
+
+function getRandomNonRepeatingInts() {
+  const numbers = [1, 2, 3];
+  for (let i = numbers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+  }
+  return numbers.join("");
+}
+
+function handleCorrectLetter() {
+  $("#AlphabetScreen").append(`<div>${currentLetter}</div>`);
+  $("#AlphabetScreen").css("background-color", "#e9e9c7");
+  nextRound();
+}
+
+function handleIncorrectLetter() {
+  $("#AlphabetScreen").css("background-color", "red");
+}
+
+//a round is over when the user clicks on the correct letter.
+function nextRound() {
+  currentIndex++;
+  //if there are still letters left to go through
+  if (currentIndex < letters.length) {
+    currentLetter = letters[currentIndex];
+    runGameRound();
+  } else {
+    //change this to call game over function ***********
+    gameOver();
+  }
+}
+
+//goes through one instance of game based on the current corret letter
