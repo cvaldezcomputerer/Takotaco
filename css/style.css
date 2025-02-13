@@ -149,13 +149,22 @@ h2 {
 #AlphabetScreen {
   font-family: "ABeeZee", serif;
   flex: 1;
-  font-size: 10vh;
+  font-size: 5vh;
   display: flex;
   background-color: #e9e9c7;
   margin-inline: 15rem;
   border-radius: 5rem;
   flex-wrap: wrap;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+#AlphabetScreen div {
+  padding-inline: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 5%;
+  border: 2px solid rgb(30, 122, 242);
+  height: fit-content;
 }
 
 #AlphabetScreen.hidden {
