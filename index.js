@@ -10,8 +10,8 @@ const basicColors = [
   "#800080", // Purple
 ];
 
-const image1 = "images/selfie/yay1.png";
-const image2 = "images/selfie/yay2.png";
+var image1 = "images/selfie/yay1.png";
+var image2 = "images/selfie/yay2.png";
 let currentImage = image1;
 var currentLetter = "A";
 var currentIndex = 0;
@@ -19,9 +19,11 @@ var stopwatchInterval;
 var elapsedTime = 0;
 var imageSwitchInterval;
 var currentIntervalDuration = 500;
+var shushCount = 0;
 
 $(document).ready(function () {
   $("#playButton").on("click", startGame);
+  $("#crisImageContainer").on("click", shushCris);
 });
 
 function startGame() {
@@ -102,6 +104,16 @@ function startCheerAnimation(duration) {
     currentImage = currentImage === image1 ? image2 : image1;
     $("#crisImage").attr("src", currentImage);
   }, duration); // Switch every second
+}
+
+//make grey and muffle sound and if already quiet delete image
+function shushCris() {
+  image1 = "images/selfie/taped1.png";
+  image2 = "images/selfie/taped2.png";
+  $("#crisImage").addClass("greyScale");
+  if ($("#crisImage").attr("src") === "images/selfie/taped1.png") {
+    $("#crisImage").remove();
+  }
 }
 
 function handleCorrectLetter() {

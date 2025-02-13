@@ -153,6 +153,9 @@ h2 {
   width: 12vw;
   /* border-radius: 50%; */
 }
+#crisImageContainer:hover {
+  cursor: pointer;
+}
 #crisImageContainer.hidden {
   display: none !important;
   /* border-radius: 50%; */
@@ -161,6 +164,9 @@ h2 {
 #crisImageContainer img {
   width: 100%;
   height: auto;
+}
+.greyScale {
+  filter: grayscale(100%);
 }
 
 #AlphabetScreen {
