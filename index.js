@@ -1,10 +1,17 @@
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const image1 = "images/selfie/yay1.png";
+const image2 = "images/selfie/yay2.png";
+let currentImage = image1;
 var currentLetter = "A";
 var currentIndex = 0;
 var stopwatchInterval;
 var elapsedTime = 0;
 
 $(document).ready(function () {
+  setInterval(function () {
+    currentImage = currentImage === image1 ? image2 : image1;
+    $("#crisImage").attr("src", currentImage);
+  }, 500); // Switch every second
   $("#playButton").on("click", startGame);
 });
 
@@ -14,11 +21,15 @@ function startGame() {
   currentIndex = 0;
   stopwatchInterval;
   elapsedTime = 0;
-  $("#endGameMessege").addClass("hidden");
   $("#AlphabetScreen").empty();
+  //hide stuff
+  $("#endGameMessege").addClass("hidden");
   $("#gameControls").addClass("hidden");
+  //show stuff
   $("#AlphabetScreen").removeClass("hidden");
   $("#chooseNextLetter").removeClass("hidden");
+  $("#crisImageContainer").removeClass("hidden");
+
   startStopwatch();
   playMusic();
   runGameRound();
@@ -97,7 +108,9 @@ function getRandomNonRepeatingInts() {
 }
 
 function handleCorrectLetter() {
-  $("#AlphabetScreen").append(`<div>${currentLetter}</div>`);
+  $("#AlphabetScreen").append(
+    `<div style=" border: 2px solid rgb(30, 122, 242);">${currentLetter}</div>`
+  );
   $("#AlphabetScreen").css("background-color", "#e9e9c7");
   nextRound();
 }

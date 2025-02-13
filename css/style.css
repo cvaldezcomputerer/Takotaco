@@ -146,6 +146,23 @@ h2 {
   background-color: #d3e6bb;
 }
 
+#crisImageContainer {
+  position: fixed;
+  bottom: 50%;
+  left: 2rem;
+  width: 12vw;
+  /* border-radius: 50%; */
+}
+#crisImageContainer.hidden {
+  display: none !important;
+  /* border-radius: 50%; */
+}
+
+#crisImageContainer img {
+  width: 100%;
+  height: auto;
+}
+
 #AlphabetScreen {
   font-family: "ABeeZee", serif;
   flex: 1;
@@ -163,7 +180,7 @@ h2 {
   padding-inline: 0.5rem;
   background-color: #ffffff;
   border-radius: 5%;
-  border: 2px solid rgb(30, 122, 242);
+
   height: fit-content;
 }
 
@@ -238,17 +255,17 @@ h2 {
   justify-content: center;
   gap: 1rem;
   background-color: rgb(182, 97, 0);
-  width: 40%;
+  width: 20%;
   height: 60%;
   border-radius: 3%;
 }
 
 #gameControls div button {
-  flex: 0.4;
   background-color: rgb(166, 113, 16);
   font-size: 8vh;
   border-radius: 50%;
   color: #f8e787;
+  text-wrap: none;
 }
 #gameControls div button:hover {
   background-color: rgb(218, 141, 0);
