@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABC Game - Takko Town English</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <div class="nav-content">
+        <a href="index.html" class="logo">Takko Town</a>
+        <div class="nav-links">
+          <a href="about.html">About</a>
+          <a href="game.html">Game</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="cheerleader">
+      <img
+        src="./images/selfie/yay1.png"
+        alt="Cheerleader"
+        class="cheer-frame frame1"
+      />
+      <img
+        src="./images/selfie/yay2.png"
+        alt="Cheerleader"
+        class="cheer-frame frame2"
+      />
+    </div>
+
+    <div class="game-container">
+      <h1>ABC Forest Adventure</h1>
+
+      <div class="progress-box">
+        <div id="collected-letters"></div>
+      </div>
+
+      <div class="game-area">
+        <div class="prompt">
+          <p>Pick the next letter!</p>
+          <div id="options" class="options"></div>
+        </div>
+      </div>
+
+      <button id="restart" class="restart-button">Start New Game</button>
+    </div>
+
+    <div id="celebration" class="celebration">
+      <h2>すごい! (Amazing!) <i class="fa-solid fa-star"></i></h2>
+      <p>You've mastered the alphabet!</p>
+      <button onclick="startNewGame()">
+        Play Again <i class="fa-solid fa-leaf"></i>
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
