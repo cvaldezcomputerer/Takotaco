@@ -1,3 +1,9 @@
+// Initialize Supabase client
+const supabase = supabase.createClient(
+  "https://ktzdepgmhlcjbbhhrwgv.supabase.co", // Replace with your Supabase project URL
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0emRlcGdtaGxjamJiaGhyd2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwOTQzOTksImV4cCI6MjA1NTY3MDM5OX0.wmA3cPMovh01IoAyajHNTt6lo_hJUb1SJx6LMSKwe40" // Replace with your public anon key
+);
+
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let currentIndex = 0;
 let collectedLetters = [];
@@ -166,6 +172,147 @@ function toggleLanguage() {
     translations[newLang].links;
 }
 
+// Add this after your supabase initialization
+async function testConnection() {
+  try {
+    // Simple test query
+    const { data, error } = await supabase
+      .from("scores") // We'll create this table next
+      .select("count")
+      .single();
+
+    if (error) {
+      console.error("Connection error:", error.message);
+      return false;
+    }
+
+    console.log("Successfully connected to Supabase!");
+    return true;
+  } catch (error) {
+    console.error("Connection error:", error.message);
+    return false;
+  }
+}
+
+// Test the connection when the page loads
+testConnection();
+
 document.addEventListener("DOMContentLoaded", () => {
   showStartModal();
 });
+
+// Modified saveScore function to include user_id
+async function saveScore(score, timeTaken) {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) throw new Error("Must be logged in to save scores");
+
+    const { data, error } = await supabase
+      .from("scores")
+      .insert([
+        {
+          user_id: user.id,
+          score: score,
+          time_taken: timeTaken,
+        },
+      ])
+      .select();
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error("Error saving score:", error.message);
+    return null;
+  }
+}
+
+// READ - Get all scores (with optional limit)
+async function getHighScores(limit = 10) {
+  try {
+    const { data, error } = await supabase
+      .from("scores")
+      .select("*")
+      .order("score", { ascending: false })
+      .limit(limit);
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error("Error fetching scores:", error.message);
+    return [];
+  }
+}
+
+// Modified updateScore function
+async function updateScore(scoreId, newScore) {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) throw new Error("Must be logged in to update scores");
+
+    const { data, error } = await supabase
+      .from("scores")
+      .update({ score: newScore })
+      .eq("id", scoreId)
+      .eq("user_id", user.id) // Ensures user can only update their own scores
+      .select();
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error("Error updating score:", error.message);
+    return null;
+  }
+}
+
+// Modified deleteScore function
+async function deleteScore(scoreId) {
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) throw new Error("Must be logged in to delete scores");
+
+    const { error } = await supabase
+      .from("scores")
+      .delete()
+      .eq("id", scoreId)
+      .eq("user_id", user.id); // Ensures user can only delete their own scores
+
+    if (error) throw error;
+    return true;
+  } catch (error) {
+    console.error("Error deleting score:", error.message);
+    return false;
+  }
+}
+
+// Example usage in your game:
+async function handleGameComplete(userName, score, timeTaken) {
+  // Save the score when game completes
+  const savedScore = await saveScore(score, timeTaken);
+  if (savedScore) {
+    // Get and display high scores
+    const highScores = await getHighScores();
+    displayHighScores(highScores); // You'll need to create this function
+  }
+}
+
+// Example function to display high scores
+function displayHighScores(scores) {
+  const scoresList = document.getElementById("high-scores"); // Add this element to your HTML
+  if (!scoresList) return;
+
+  scoresList.innerHTML = scores
+    .map(
+      (score) => `
+        <li>
+            ${score.user_name}: ${score.score} points (${score.time_taken}s)
+        </li>
+    `
+    )
+    .join("");
+}
