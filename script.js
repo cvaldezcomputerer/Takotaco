@@ -1,8 +1,10 @@
-// Initialize Supabase client
-const supabase = supabase.createClient(
-  "https://ktzdepgmhlcjbbhhrwgv.supabase.co", // Replace with your Supabase project URL
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0emRlcGdtaGxjamJiaGhyd2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwOTQzOTksImV4cCI6MjA1NTY3MDM5OX0.wmA3cPMovh01IoAyajHNTt6lo_hJUb1SJx6LMSKwe40" // Replace with your public anon key
+const { createClient } = supabase;
+const _supabase = createClient(
+  "https://ktzdepgmhlcjbbhhrwgv.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0emRlcGdtaGxjamJiaGhyd2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwOTQzOTksImV4cCI6MjA1NTY3MDM5OX0.wmA3cPMovh01IoAyajHNTt6lo_hJUb1SJx6LMSKwe40"
 );
+
+console.log("Supabase Instance: ", _supabase);
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let currentIndex = 0;
@@ -10,30 +12,9 @@ let collectedLetters = [];
 let timer;
 let seconds = 0;
 
-const translations = {
-  en: {
-    about: "About",
-    hello: "Hello!",
-    welcome: "Welcome to my Website.",
-    intro:
-      'My name is Cristian Valdez. I came to 田子町(Takko town) in January of 2023. I am from the United States 🇺🇸. I came to Japan via the JET program and I am working here as an "ALT". Basically, I help teach English to the students in town. As of the 2023-2024 school year, I am working at Takko Kindergarten and Takko Elementary school. I am also working at the Takko Board of Education.',
-    siteTitle: "Takkotaco.com",
-    siteDesc:
-      "I am creating Takkotaco.com to provide an easily accessible English learning resource for the students of Takko town. I plan to make various additions to the site in the future, such as simple English news posts, games, and general information about Takko town from the perspective of a foreigner resident. I'm also learning about web Development as I go, so the site quality should hopefully improve over time.",
-    links: "LINKS",
-  },
-  ja: {
-    about: "概要",
-    hello: "こんにちは！",
-    welcome: "ウェブサイトへようこそ。",
-    intro:
-      "クリスチャン・バルデスと申します。2023年1月に田子町に来ました。アメリカ出身です🇺🇸。JETプログラムを通じて来日し、「ALT」として働いています。基本的に、町の生徒たちに英語を教えるのを手伝っています。2023-2024学年度は、田子幼稚園と田子小学校で働いています。田子町教育委員会でも働いています。",
-    siteTitle: "Takkotaco.com",
-    siteDesc:
-      "Takkotaco.comは、田子町の生徒たちが簡単にアクセスできる英語学習リソースを提供するために作成しています。将来的には、シンプルな英語のニュース記事、ゲーム、外国人居住者の視点から見た田子町に関する一般的な情報など、さまざまな追加を行う予定です。また、ウェブ開発についても学んでいるところなので、サイトの品質は徐々に向上していくはずです。",
-    links: "リンク",
-  },
-};
+document.addEventListener("DOMContentLoaded", function () {
+  showStartModal();
+});
 
 function getRandomLetters(exclude, count) {
   const available = alphabet.filter((letter) => letter !== exclude);
@@ -125,6 +106,7 @@ function showCelebration() {
   document.getElementById("celebration").classList.add("active");
 
   document.querySelector(".cheerleader").classList.remove("active");
+  saveScore(collectedLetters.length, seconds);
 }
 
 function updateTimer() {
@@ -175,9 +157,9 @@ function toggleLanguage() {
 // Add this after your supabase initialization
 async function testConnection() {
   try {
-    // Simple test query
-    const { data, error } = await supabase
-      .from("scores") // We'll create this table next
+    // Simple test query - using _supabase instead of supabase
+    const { data, error } = await _supabase
+      .from("scores")
       .select("count")
       .single();
 
@@ -197,19 +179,15 @@ async function testConnection() {
 // Test the connection when the page loads
 testConnection();
 
-document.addEventListener("DOMContentLoaded", () => {
-  showStartModal();
-});
-
-// Modified saveScore function to include user_id
+// Modified saveScore function
 async function saveScore(score, timeTaken) {
   try {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await _supabase.auth.getUser();
     if (!user) throw new Error("Must be logged in to save scores");
 
-    const { data, error } = await supabase
+    const { data, error } = await _supabase
       .from("scores")
       .insert([
         {
@@ -231,7 +209,7 @@ async function saveScore(score, timeTaken) {
 // READ - Get all scores (with optional limit)
 async function getHighScores(limit = 10) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await _supabase
       .from("scores")
       .select("*")
       .order("score", { ascending: false })
@@ -250,10 +228,10 @@ async function updateScore(scoreId, newScore) {
   try {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await _supabase.auth.getUser();
     if (!user) throw new Error("Must be logged in to update scores");
 
-    const { data, error } = await supabase
+    const { data, error } = await _supabase
       .from("scores")
       .update({ score: newScore })
       .eq("id", scoreId)
@@ -273,10 +251,10 @@ async function deleteScore(scoreId) {
   try {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await _supabase.auth.getUser();
     if (!user) throw new Error("Must be logged in to delete scores");
 
-    const { error } = await supabase
+    const { error } = await _supabase
       .from("scores")
       .delete()
       .eq("id", scoreId)
@@ -290,7 +268,7 @@ async function deleteScore(scoreId) {
   }
 }
 
-// Example usage in your game:
+// Example usage in your game:--------------------------------------------------------
 async function handleGameComplete(userName, score, timeTaken) {
   // Save the score when game completes
   const savedScore = await saveScore(score, timeTaken);
@@ -316,3 +294,8 @@ function displayHighScores(scores) {
     )
     .join("");
 }
+
+// Add event listener for restart button
+document.getElementById("restart")?.addEventListener("click", startNewGame);
+
+// Add this at the bottom of your script, just before the closing </script> tag
