@@ -41,7 +41,24 @@
     </div>
 
     <div class="game-container">
+      <div id="start-modal" class="game-modal">
+        <div class="modal-content">
+          <h2>ABC Forest Adventure <i class="fa-solid fa-tree"></i></h2>
+          <p>Learn the alphabet while exploring the forest!</p>
+          <div class="modal-buttons">
+            <button onclick="startNewGame()" class="modal-button">
+              Start Game <i class="fa-solid fa-play"></i>
+            </button>
+            <button onclick="showInstructions()" class="modal-button secondary">
+              How to Play <i class="fa-solid fa-question"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <h1>ABC Forest Adventure</h1>
+
+      <div class="timer">Time: <span id="time">0</span>s</div>
 
       <div class="progress-box">
         <div id="collected-letters"></div>
@@ -53,16 +70,22 @@
           <div id="options" class="options"></div>
         </div>
       </div>
-
-      <button id="restart" class="restart-button">Start New Game</button>
     </div>
 
-    <div id="celebration" class="celebration">
-      <h2>すごい! (Amazing!) <i class="fa-solid fa-star"></i></h2>
-      <p>You've mastered the alphabet!</p>
-      <button onclick="startNewGame()">
-        Play Again <i class="fa-solid fa-leaf"></i>
-      </button>
+    <div id="celebration" class="game-modal">
+      <div class="modal-content">
+        <h2>すごい! (Amazing!) <i class="fa-solid fa-star"></i></h2>
+        <p>You've mastered the alphabet!</p>
+        <p class="score">Time: <span id="final-time">0</span>s</p>
+        <div class="modal-buttons">
+          <button onclick="startNewGame()" class="modal-button">
+            Play Again <i class="fa-solid fa-rotate"></i>
+          </button>
+          <button onclick="shareScore()" class="modal-button secondary">
+            Share Score <i class="fa-solid fa-share"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
