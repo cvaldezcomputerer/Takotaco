@@ -4,17 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My First Blog Post</title>
-    <link rel="stylesheet" href="../../../css/style.css" />
-    <link rel="stylesheet" href="../../../css/blog.css" />
+    <link rel="stylesheet" href="../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../css/blog.css" />
   </head>
   <body>
-    <header>
-      <h1><a href="/">Takotaco</a></h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/blog/blog/">Blog</a>
-      </nav>
-    </header>
+    <div class="banner">
+      <div class="banner-content">
+        <h1>Takko Taco</h1>
+        <p data-translate="subtitle">The unofficial 田子町 English website</p>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="nav-content">
+        <a href="index.html" class="logo">T_T</a>
+        <div class="nav-links">
+          <a href="about.html" data-translate="about">About</a>
+          <a href="game.html" data-translate="game">Game</a>
+          <a href="blog/blog/index.html" data-translate="blog">Blog</a>
+          <a href="contact.html" data-translate="contact">Contact</a>
+        </div>
+        <button id="langToggle" class="lang-toggle">
+          <span class="lang-text">日本語</span>
+          <i class="fa-solid fa-language"></i>
+        </button>
+      </div>
+    </nav>
+
     <main>
       <h1>My First Blog Post</h1>
       <p>This is the content of my first blog post.</p>
