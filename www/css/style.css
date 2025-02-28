@@ -760,7 +760,7 @@ footer::before {
 .banner {
   width: 100%;
   height: 200px;
-  background-image: url("images/yo2.jpg");
+  background-image: url("../images/yo2.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
