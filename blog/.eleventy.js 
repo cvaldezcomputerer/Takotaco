@@ -22,6 +22,7 @@ module.exports = function(eleventyConfig) {
       input: "src",
       output: "../www/blog", // Output to the blog directory in the existing website
       includes: "src/_includes"
+      layouts: "_includes/layouts"
     }
   };
 };
