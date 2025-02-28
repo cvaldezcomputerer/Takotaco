@@ -1,9 +1,9 @@
 /* General styles */
 body {
-  font-family: sans-serif; /* Replace with your website's font */
+  font-family: "M PLUS Rounded 1c", "Comic Sans MS", cursive, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #f8f3e6;
   color: #333;
 }
 
@@ -12,14 +12,17 @@ body {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
+  background: rgba(255, 255, 255, 0.9); /* Match website's content area */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Match website's shadows */
 }
 
 /* Blog index heading */
 .blog-index h1 {
   font-size: 2.5em;
   margin-bottom: 0.5em;
-  color: #222;
-  border-bottom: 1px solid #eee;
+  color: #557153; /* Match website's primary color */
+  border-bottom: 3px solid rgba(85, 113, 83, 0.2); /* Match website's border */
   padding-bottom: 0.5em;
 }
 
@@ -41,12 +44,13 @@ body {
 
 /* Post link */
 .blog-index .post-list a {
-  color: #333;
+  color: #557153; /* Match website's primary color */
   text-decoration: none;
   font-weight: bold;
 }
 
 .blog-index .post-list a:hover {
+  color: #94b49f; /* Match website's hover color */
   text-decoration: underline;
 }
 
@@ -54,4 +58,15 @@ body {
 .blog-index .post-list time {
   font-size: 0.8em;
   color: #777;
+}
+
+/* Blog post content (adjust as needed) */
+.content h1 {
+  color: #557153; /* Match website's primary color */
+}
+
+.content p {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
