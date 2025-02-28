@@ -1,0 +1,57 @@
+/* General styles */
+body {
+  font-family: sans-serif; /* Replace with your website's font */
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Blog index container */
+.blog-index {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Blog index heading */
+.blog-index h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5em;
+}
+
+/* Post list */
+.blog-index .post-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Post list item */
+.blog-index .post-list li {
+  margin-bottom: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5em;
+}
+
+/* Post link */
+.blog-index .post-list a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.blog-index .post-list a:hover {
+  text-decoration: underline;
+}
+
+/* Post date */
+.blog-index .post-list time {
+  font-size: 0.8em;
+  color: #777;
+}
